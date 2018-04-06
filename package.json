@@ -1,0 +1,23 @@
+{
+  "name": "notes-app",
+  "version": "1.0.0",
+  "description": "A basic app with adding,removing, updating notes",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raiyan106/notes-app.git"
+  },
+  "keywords": [
+    "nodejs",
+    "notes-app"
+  ],
+  "author": "raiyan106",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raiyan106/notes-app/issues"
+  },
+  "homepage": "https://github.com/raiyan106/notes-app#readme"
+}
