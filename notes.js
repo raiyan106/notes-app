@@ -1,1 +1,2 @@
-console.log("Notes app starting");
+console.log("Starting Notes.js file");
+console.log("Another Line");
