@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/raiyan106/notes-app/issues"
   },
-  "homepage": "https://github.com/raiyan106/notes-app#readme"
+  "homepage": "https://github.com/raiyan106/notes-app#readme",
+  "dependencies": {
+    "yargs": "^11.0.0"
+  }
 }
