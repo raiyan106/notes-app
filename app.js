@@ -19,9 +19,16 @@ if(operation==='add')
     notes.updateNote(TITLE, BODY);
 }
 
+else if(operation==='read') {
+    notes.readNote(TITLE);
+}
+
+else if(operation==='readAll'){
+    notes.readAll();
+}
  else if(operation=='remove'){
     //console.log(`Removing note with title ${args.title}`)
-    notes.removeNote(args.title);
+    notes.removeNote(TITLE);
 } else
 {
     console.log(`Invalid Operation`);

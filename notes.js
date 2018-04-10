@@ -26,6 +26,7 @@ let addNotes = (title, body) =>{
     if(sameNotes.length===0){
     notes.push(note);
     fs.writeFileSync('notes.json',JSON.stringify(notes));
+    console.log("Note successfully added");
     } else {
         console.log("cannot add, same note exists\n\n");
     }
@@ -37,14 +38,7 @@ let updateNote = (title, body) =>{
     try {
         let notes = fs.readFileSync('notes.json');
          notes = JSON.parse(notes);
-    /*notes.forEach(item=>{
-        if(item.title===title){
-            item.body = body;
-            console.log(`The body of title \"${item.title}\" was changed to \"${body} \" `);
-            //notes.push(note);
-            fs.writeFileSync('notes.json',JSON.stringify(notes));
-            return;
-        }*/
+
         for(let i=0;i<notes.length;i++){
             if(notes[i].title===title){
                 notes[i].body = body;
@@ -69,21 +63,74 @@ let readNote = (title) =>{
         notes = JSON.parse(notes);
         let noteFound = notes.filter(item=>{
             return item.title===title;
-        })
+        });
+        if(noteFound.length>0){
+            logNote(noteFound[0]);
+        }
+        else{
+            console.log(`Note of title ${title} was not found`);
+        }
 
-    } catch(e){}
+    } catch(e){
+        console.log("No notes database was found");
+    }
 
 }
 
+
+let logNote = (note) => {
+    console.log("\n----");
+    console.log(`Title is ${note.title}`);
+    console.log(`Body is ${note.body}`);
+    console.log("---\n");
+}
+
+let readAll = () =>{
+    try {
+        let notes = fs.readFileSync('notes.json');
+        notes = JSON.parse(notes);
+        if(notes.length>0){
+        notes.forEach(item =>{
+            logNote(item);
+        });
+    }
+    else {
+        errorNote();
+    }
+    } catch(e){
+        console.log("Notes Not found");
+        
+    }
+}
+
 let removeNote = (title) =>{
-    console.log(`Removing Note ${title}`);
+    try {
+        let notes = fs.readFileSync('notes.json');
+        notes = JSON.parse(notes);
+        let newNotes = notes.filter(item=>{return item.title!==title});
+        if(newNotes.length<notes.length)
+        {
+            console.log(`Note of title ${title} was removed`);
+            fs.writeFileSync('notes.json',JSON.stringify(newNotes));
+        }
+        else {
+            console.log("Note was not found");
+        }
+    } catch(e){
+        console.log("Notes file was not found");
+    }
+}
+
+
+let errorNote = ()=>{
+    console.log(`No notes found`);
 }
 
 module.exports = {
     addNotes,
     updateNote,
-    //readNote,
-    //getAllNotes,
+    readNote,
+    readAll,
     removeNote
 }
 
